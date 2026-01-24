@@ -22,7 +22,7 @@ public class Book {
     private long ISBN;
     private double price;
 
-    private static int nbOfCreatedBooks;
+    private static int bookCounter = 0;
 
     // Default constructor
     public Book() {
@@ -80,7 +80,12 @@ public class Book {
 
     // Find the total number of created books
     public static int getNbOfCreatedBooks() {
-        return nbOfCreatedBooks;
+        return bookCounter;
+    }
+
+    // Increment the number of books in the inventory
+    public static void incrementBookCounter() {
+        bookCounter++;
     }
 
     // toString() method
