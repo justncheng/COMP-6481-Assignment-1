@@ -1,3 +1,20 @@
+/**
+ * -----------------------------------------------------
+ * Assignment #: 1
+ * Course: COMP6481
+ * Due Date: January 30 2026
+ * Written by: Cristian Gasparesc 40209205, Justin Cheng 40210279
+ * -----------------------------------------------------
+ */
+
+/**
+ * The Book class is the blueprint for a book object with a title, author,
+ * ISBN number, and price. It contains constructors, accessors,
+ * mutators, and utility methods to manipulate and display
+ * book information. Our program is user friendly as it has clear instructions
+ * for users on how to find the information that they require.
+ */
+
 public class Book {
 
     private String title;
