@@ -138,11 +138,25 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in); // Create scanner sc
+        int max;
 
         System.out.println("Welcome to the bookstore!");
-        System.out.println("What is the maximum number of books in your store?");
+        do
+        {
+            System.out.println("What is the maximum number of books in your store?");
+            while (!sc.hasNextInt())
+            {
+                System.out.println("Invalid input. Enter a non-negative number.");
+                sc.nextLine();
+            }
+            max = sc.nextInt();
+            sc.nextLine();
 
-        int max = sc.nextInt(); // Max number of books an bookstore may contain
+            if (max < 0) {
+                System.out.println("Maximum number cannot be negative.");
+            }
+        } while(max < 0);
+
         Book[] inventory = new Book[max]; // Creation of an array with the max number of books
 
         int failedCycle = 0; // Counts the number of failed cycles for choice 1
@@ -162,11 +176,27 @@ public class Main {
                         }
                         break;
                     }
+                    int nbBooks;
 
-                    System.out.println("Enter number of books to create: ");
-                    int nbBooks = sc.nextInt();
                     sc.nextLine();
 
+                    while (true) {
+                        System.out.println("Enter number of books to create: ");
+                        if (!sc.hasNextInt()) {
+                            System.out.println("Invalid input. Enter a valid number.");
+                            sc.nextLine();
+                            continue;
+                        }
+
+                        nbBooks = sc.nextInt();
+                        sc.nextLine();
+
+                        if (nbBooks < 0) {
+                            System.out.println("Number of books cannot be negative.");
+                        } else {
+                            break;
+                        }
+                    }
                     int remainingSpace = inventory.length - Book.getNbOfCreatedBooks();
 
                     if(nbBooks < remainingSpace) {
@@ -208,13 +238,38 @@ public class Main {
                     findBooksBy(author, inventory);
                     break;
                 case 4:
-                    System.out.println("Enter the price of the book: ");
-                    int price = sc.nextInt();
+                    double price;
+
+                    //clear any leftover newline before reading
+                    sc.nextLine();
+
+                    while (true) {
+                        System.out.print("Enter the price of the book: ");
+
+                        if (!sc.hasNextDouble()) {
+                            System.out.println("Invalid input. Enter a numeric price.");
+                            sc.nextLine(); // discard bad input
+                            continue;
+                        }
+
+                        price = sc.nextDouble();
+                        sc.nextLine();
+
+                        if (price < 0) {
+                            System.out.println("Price cannot be negative.");
+                        } else {
+                            break;
+                        }
+                    }
+
                     findCheaperThan(price, inventory);
                     break;
                 case 5:
                     System.out.println("Goodbye!");
                     System.exit(0);
+                default:
+                    System.out.println();
+                    System.out.println("Invalid Choice Try Again!");
             }
         }
 
