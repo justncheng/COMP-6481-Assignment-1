@@ -230,6 +230,9 @@ public class Main {
 
                 case 2:
                     boolean authenticated2 = authenticateOwner();
+                    if (!authenticated2) {
+                        break;
+                    }
                     updateBook(inventory);
                     break;
                 case 3:
